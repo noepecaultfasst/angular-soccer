@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {catchError, map, Observable, of, shareReplay, tap} from "rxjs";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
+import {catchError, map, Observable, of, shareReplay} from "rxjs";
 import {Country} from "./model/Country";
 import {LeagueCountry} from "./model/LeagueCountry";
 import {SoccerResponse} from "./model/SoccerReponse";
@@ -57,7 +57,12 @@ export class SoccerService {
   constructor(private http: HttpClient) { }
 
   getLeague(id: number): Observable<League> {
-    return this.http.get<SoccerResponse<LeagueCountry>>(`${this.baseUrl}/leagues`).pipe(
+    return this.http.get<SoccerResponse<LeagueCountry>>(`${this.baseUrl}/leagues`,
+      {
+        ...this.options,
+        params: new HttpParams().set("id", id)
+      }
+    ).pipe(
       map(leagueResponse => leagueResponse.league)
     );
   }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {SoccerService} from "../../core/soccer.service";
-import {BehaviorSubject, map, Observable, tap} from "rxjs";
+import {BehaviorSubject, map, Observable} from "rxjs";
 import {Country} from "../../core/model/Country";
 
 @Component({
