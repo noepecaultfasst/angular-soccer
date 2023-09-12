@@ -30,7 +30,7 @@ export class SoccerService {
           {
             "name": "Spain",
             "code": "ES",
-            "flag": "https://media.api-sports.io/flags/ES.svg"
+            "flag": "https://media.api-sports.io/flags/es.svg"
           },
           {
             "name": "Germany",
