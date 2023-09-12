@@ -1,7 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {catchError, Observable, of, shareReplay, tap} from "rxjs";
+import {catchError, map, Observable, of, shareReplay, tap} from "rxjs";
 import {Country} from "./model/Country";
+import {LeagueCountry} from "./model/LeagueCountry";
+import {SoccerResponse} from "./model/SoccerReponse";
+import {League} from "./model/League";
 
 /**
  * Duration of the countries cache in seconds (we keep it for one hour)
@@ -19,7 +22,7 @@ export class SoccerService {
   }
 
   countries$: Observable<Country[]> =
-    this.http.get<Country[]>(`${this.baseUrl}/countries`, this.options).pipe(
+    this.http.get<SoccerResponse<Country[]>>(`${this.baseUrl}/countries`, this.options).pipe(
       shareReplay(1, CACHE_VALIDITY_DURATION * 1000),
       catchError(() => of([
           {
@@ -52,4 +55,10 @@ export class SoccerService {
     );
 
   constructor(private http: HttpClient) { }
+
+  getLeague(id: number): Observable<League> {
+    return this.http.get<SoccerResponse<LeagueCountry>>(`${this.baseUrl}/leagues`).pipe(
+      map(leagueResponse => leagueResponse.league)
+    );
+  }
 }

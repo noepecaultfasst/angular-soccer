@@ -1,3 +1,7 @@
 <div>
-  <div id="{{(country.name | lowercase) + 'Select' }}" *ngFor="let country of countries$ | async">{{country.name}}</div>
+  <div id="{{(country.name | lowercase) + 'Select' }}"
+       (click)="onSelectCountryClicked(country)"
+       *ngFor="let country of countries$ | async">
+    {{country.name}}
+  </div>
 </div>
