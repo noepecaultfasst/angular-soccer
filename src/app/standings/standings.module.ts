@@ -1,7 +1,6 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import { CountryLeaguesComponent } from './country-leagues/country-leagues.component';
-
+import {CountryLeaguesComponent} from './country-leagues/country-leagues.component';
 
 
 @NgModule({
@@ -12,4 +11,5 @@ import { CountryLeaguesComponent } from './country-leagues/country-leagues.compo
     CommonModule
   ]
 })
-export class StandingsModule { }
+export class StandingsModule {
+}
