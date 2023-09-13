@@ -7,6 +7,8 @@
   </div>
 </div>
 
+<div id="standing-error-tooltip" class="card-error" *ngIf="(standingError$ | async) !== null">An error occurred.</div>
+
 <div id="standings-table" class="card-table x-center">
   <table>
     <thead>

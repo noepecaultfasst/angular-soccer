@@ -9,6 +9,13 @@ body {
   flex-direction: column;
   padding: 0.4rem 2rem;
   background-color: #eaedf8;
+
+  &-error {
+    @extend .card;
+    background-color: #ff9e98;
+    color: #b60000;
+    text-shadow: #b60000;
+  }
 }
 
 .card-table {

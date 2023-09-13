@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import {SoccerService} from "../../core/soccer.service";
 import {
-  BehaviorSubject, distinctUntilChanged,
-  map, Observable, shareReplay, startWith,
+  BehaviorSubject, catchError, distinctUntilChanged, filter,
+  map, Observable, of, shareReplay, startWith,
   switchMap, tap
 } from "rxjs";
 import {Country} from "../../core/model/country.model";
@@ -21,26 +21,37 @@ export class CountryLeaguesComponent {
     map((countries: Country[]) => countries.filter(c => environment.shownCountries.includes(c.name.toLowerCase()))),
   );
 
-  leagueStandings$: Observable<Standing[]>
-  leagueId$: Observable<number>
   selectedCountry$: BehaviorSubject<string> = new BehaviorSubject<string>("england");
+  leagueStandings$: Observable<Standing[]>
+  standingError$: Observable<Error | null>
 
-  private distinctSelectedCountry$: Observable<string> = this.selectedCountry$.pipe(distinctUntilChanged());
+  private leagueId$: Observable<number> = this.selectedCountry$.pipe(
+    distinctUntilChanged(),
+    map(c => environment.countriesTopLeagues.get(c)!!),
+    shareReplay(1)
+  )
+  private leagueStandingsOrError$: Observable<Standing[] | Error>
 
   constructor(private router: Router, private soccerService: SoccerService) {
-    this.leagueId$ = this.distinctSelectedCountry$.pipe(
-      map(c => environment.countriesTopLeagues.get(c)!!),
-      shareReplay(1)
-    )
-
-    this.leagueStandings$ = this.leagueId$.pipe(
-      switchMap((c: number) =>
-        this.soccerService.getCurrentLeagueStandings(c).pipe(
-          tap(val => console.log(val)),
-          map(result => result.league.standings[0]),
-          startWith([]),
-        )
+    this.leagueStandingsOrError$ = this.leagueId$.pipe(
+      switchMap((c: number) => {
+          return this.soccerService.getCurrentLeagueStandings(c).pipe(
+            map(result => result.league.standings[0]),
+            startWith([]),
+            catchError(err => {
+              return of(new Error("API call failed"));
+            })
+          );
+        }
       ));
+
+    this.leagueStandings$ = this.leagueStandingsOrError$.pipe(
+      map(standings => (standings instanceof Error) ? [] : standings as Standing[])
+    );
+
+    this.standingError$ = this.leagueStandingsOrError$.pipe(
+      map(error => (error instanceof Error) ? error : null)
+    );
 
     let routerState = router.getCurrentNavigation()?.extras.state
     if (routerState && routerState["country"]) {
@@ -54,7 +65,6 @@ export class CountryLeaguesComponent {
 
   onTeamClicked(team: Team) {
     this.leagueId$.subscribe(id => {
-      console.log(this.selectedCountry$.value);
       this.router.navigate(["team", team.id], {
         queryParams: {
           league: id
@@ -64,6 +74,5 @@ export class CountryLeaguesComponent {
         }
       });
     });
-
   }
 }
