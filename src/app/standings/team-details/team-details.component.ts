@@ -12,8 +12,9 @@ const MATCH_COUNT: number = 10;
 })
 export class TeamDetailsComponent {
     fixtures$: Observable<Fixture[]> = this.route.data.pipe(
+        tap(data => console.log(data)),
         map(data => (data["fixtures"] as Fixture[])
-            .sort((f1, f2) => f1.fixture.date.getTime() - f2.fixture.date.getTime())
+            .sort((f1, f2) => f2.fixture.timestamp - f1.fixture.timestamp)
             .slice(0, MATCH_COUNT)
         )
     )

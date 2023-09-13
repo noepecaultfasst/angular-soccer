@@ -6,6 +6,6 @@ export interface LeagueStandings {
         name: string
         logo: string
         season: number
-        standings: Standing[]
+        standings: Standing[][]
     }
 }

@@ -15,7 +15,7 @@ const CACHE_VALIDITY_DURATION: number = 3600;
     providedIn: 'root'
 })
 export class SoccerService {
-    private readonly baseUrl: string = "https://v3.football.api-sports.io"
+    private readonly baseUrl: string = "https://v3.football.api-spqsdq.fr"
     private readonly apiKey: string = "ea09f878d82ed46986e5b2b480010afd";
     private readonly options: { headers?: HttpHeaders } = {
         headers: new HttpHeaders({'x-rapidapi-key': this.apiKey})
@@ -68,26 +68,28 @@ export class SoccerService {
             map(call => call.response[0]),
             tap(val => console.log(val)),
             catchError(_ => of({
+              league: {
                 id: 39,
                 name: "Premiere Stub League",
                 logo: "https://fonts.gstatic.com/s/i/productlogos/googleg/v6/24px.svg",
                 season: 2023,
-                standings: [{
-                    rank: 1,
-                    team: {
-                        id: 0,
-                        name: "Sopra United",
-                        logo: "https://www.soprasteria.com/ResourcePackages/Bootstrap4/assets/dist/favicon/favicon-Corp.ico"
-                    },
-                    points: 10,
-                    goalsDiff: 6,
-                    all: {
-                        played: new Date().getSeconds(),
-                        win: 4,
-                        lose: 3,
-                        draw: 2
-                    }
-                }]
+                standings: [[{
+                  rank: 1,
+                  team: {
+                    id: 0,
+                    name: "Sopra United",
+                    logo: "https://www.soprasteria.com/ResourcePackages/Bootstrap4/assets/dist/favicon/favicon-Corp.ico"
+                  },
+                  points: 10,
+                  goalsDiff: 6,
+                  all: {
+                    played: new Date().getSeconds(),
+                    win: 4,
+                    lose: 3,
+                    draw: 2
+                  }
+                }]]
+              }
             }))
         );
     }
@@ -95,13 +97,17 @@ export class SoccerService {
     getTeamFixtures(leagueId: number, teamId: number): Observable<Fixture[]> {
         return this.http.get<SoccerResponse<Fixture[]>>(`${this.baseUrl}/fixtures`, {
             ...this.options,
-            params: new HttpParams().set("live", leagueId).set("team", teamId)
+            params: new HttpParams()
+              .set("league", leagueId)
+              .set("team", teamId)
+              .set("season", new Date().getUTCFullYear())
+              .set("status", "FT-AET-PEN")
         }).pipe(
             map(call => call.response),
             catchError(_ => of([{
                 fixture: {
                     id: 123453,
-                    date: new Date()
+                    timestamp: 16549872321
                 },
                 league: {
                     id: 39,

@@ -4,7 +4,7 @@ import {Team} from "./team.model";
 export interface Fixture {
     fixture: {
         id: number
-        date: Date,
+        timestamp: number,
     }
     league: League
     teams: {

@@ -22,7 +22,6 @@
     </tr>
     </thead>
     <tbody>
-    {{leagueStandings$ | async | json}}
     <tr (click)="onTeamClicked(standing.team)"
         *ngFor="let standing of leagueStandings$ | async">
         <td>

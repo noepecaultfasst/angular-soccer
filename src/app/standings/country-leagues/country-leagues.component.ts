@@ -41,7 +41,7 @@ export class CountryLeaguesComponent {
             switchMap((c: number) =>
                 this.soccerService.getCurrentLeagueStandings(c).pipe(
                     tap(val => console.log(val)),
-                    map(result => result.standings),
+                    map(result => result.league.standings[0]),
                     startWith([]),
                 )
             ));
