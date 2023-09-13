@@ -6,15 +6,15 @@ import {RouterLink} from "@angular/router";
 
 
 @NgModule({
-    declarations: [
-        CountryLeaguesComponent,
-        TeamDetailsComponent
-    ],
-    imports: [
-        CommonModule,
-        NgOptimizedImage,
-        RouterLink
-    ]
+  declarations: [
+    CountryLeaguesComponent,
+    TeamDetailsComponent
+  ],
+  imports: [
+    CommonModule,
+    NgOptimizedImage,
+    RouterLink
+  ]
 })
 export class StandingsModule {
 }

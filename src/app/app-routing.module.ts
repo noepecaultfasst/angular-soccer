@@ -6,26 +6,26 @@ import {teamFixturesResolver} from "./shared/resolvers/team-fixtures.resolver";
 import {NotFoundComponent} from "./shared/not-found/not-found.component";
 
 const routes: Routes = [
-    {
-        path: "",
-        component: CountryLeaguesComponent
-    },
-    {
-        path: "team/:id",
-        component: TeamDetailsComponent,
-        resolve: {
-            fixtures: teamFixturesResolver
-        }
-    },
-    {
-        path: "notfound",
-        component: NotFoundComponent
+  {
+    path: "",
+    component: CountryLeaguesComponent
+  },
+  {
+    path: "team/:id",
+    component: TeamDetailsComponent,
+    resolve: {
+      fixtures: teamFixturesResolver
     }
+  },
+  {
+    path: "notfound",
+    component: NotFoundComponent
+  }
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
 export class AppRoutingModule {
 }

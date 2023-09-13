@@ -1,31 +1,31 @@
 <div>
-    <table>
-        <tbody>
-        <tr *ngFor="let fixture of fixtures$ | async">
-            <td>
-                <img [src]="fixture.teams.home.logo" [alt]="fixture.teams.home.name + ' Logo'">
-            </td>
-            <td>
-                {{fixture.teams.home.name}}
-            </td>
-            <td>
-                {{fixture.goals.home}}
-            </td>
-            <td>
-                -
-            </td>
-            <td>
-                {{fixture.goals.away}}
-            </td>
-            <td>
-                {{fixture.teams.away.name}}
-            </td>
-            <td>
-                <img [src]="fixture.teams.away.logo" [alt]="fixture.teams.away.name + ' Logo'">
-            </td>
-        </tr>
-        </tbody>
-    </table>
+  <table>
+    <tbody>
+    <tr *ngFor="let fixture of fixtures$ | async">
+      <td>
+        <img [src]="fixture.teams.home.logo" [alt]="fixture.teams.home.name + ' Logo'">
+      </td>
+      <td>
+        {{fixture.teams.home.name}}
+      </td>
+      <td>
+        {{fixture.goals.home}}
+      </td>
+      <td>
+        -
+      </td>
+      <td>
+        {{fixture.goals.away}}
+      </td>
+      <td>
+        {{fixture.teams.away.name}}
+      </td>
+      <td>
+        <img [src]="fixture.teams.away.logo" [alt]="fixture.teams.away.name + ' Logo'">
+      </td>
+    </tr>
+    </tbody>
+  </table>
 </div>
 
 <button (click)="onBackClicked()">Back</button>
