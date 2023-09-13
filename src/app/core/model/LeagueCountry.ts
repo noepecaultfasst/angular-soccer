@@ -3,5 +3,5 @@ import {League} from "./League";
 
 export interface LeagueCountry {
   league: League
-  country: Country,
+  country: Country
 }
