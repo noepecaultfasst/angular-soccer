@@ -14,7 +14,7 @@ export const teamFixturesResolver: ResolveFn<Fixture[]> = (
   let leagueIdStr: string | null = route.queryParamMap.get("league");
 
   if (leagueIdStr === null || teamIdStr === null || !/\d+/.test(teamIdStr) || !/\d+/.test(leagueIdStr)) {
-    router.navigateByUrl("/notfound");
+    router.navigateByUrl("/not-found");
     return EMPTY;
   }
 

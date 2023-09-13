@@ -1,4 +1,4 @@
-<div>
+<div id="team-fixtures" class="card-table x-center">
   <table>
     <tbody>
     <tr *ngFor="let fixture of fixtures$ | async">
@@ -28,4 +28,4 @@
   </table>
 </div>
 
-<button (click)="onBackClicked()">Back</button>
+<button id="back-button" class="card x-center" (click)="onBackClicked()">Back</button>

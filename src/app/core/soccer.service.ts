@@ -83,7 +83,7 @@ export class SoccerService {
             points: 10,
             goalsDiff: 6,
             all: {
-              played: new Date().getSeconds(),
+              played: leagueId,
               win: 4,
               lose: 3,
               draw: 2

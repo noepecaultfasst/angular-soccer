@@ -1,5 +1,5 @@
-<div>
-  <div [class]="((selectedCountry$ | async) === (country.name | lowercase)) ? 'country-selected' : ''"
+<div class="country-selector x-center card">
+  <div [class]="((selectedCountry$ | async) === (country.name | lowercase)) ? ['country-selected'] : ''"
        id="{{(country.name | lowercase) + 'Select' }}"
        (click)="onSelectCountryClicked(country)"
        *ngFor="let country of countries$ | async">
@@ -7,50 +7,53 @@
   </div>
 </div>
 
-<table>
-  <thead>
-  <tr>
-    <th></th>
-    <th></th>
-    <th>Name</th>
-    <th>Games</th>
-    <th>W</th>
-    <th>L</th>
-    <th>D</th>
-    <th>Goal Difference</th>
-    <th>Points</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr (click)="onTeamClicked(standing.team)"
-      *ngFor="let standing of leagueStandings$ | async">
-    <td>
-      {{standing.rank}}
-    </td>
-    <td>
-      <img [src]="standing.team.logo" [alt]="standing.team.name + ' Logo'" width="50" height="50">
-    </td>
-    <td>
-      {{standing.team.name}}
-    </td>
-    <td>
-      {{standing.all.played}}
-    </td>
-    <td>
-      {{standing.all.win}}
-    </td>
-    <td>
-      {{standing.all.lose}}
-    </td>
-    <td>
-      {{standing.all.draw}}
-    </td>
-    <td>
-      {{standing.goalsDiff}}
-    </td>
-    <td>
-      {{standing.points}}
-    </td>
-  </tr>
-  </tbody>
-</table>
+<div id="standings-table" class="card-table x-center">
+  <table>
+    <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>Name</th>
+      <th>Games</th>
+      <th>W</th>
+      <th>L</th>
+      <th>D</th>
+      <th>Goal Difference</th>
+      <th>Points</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr (click)="onTeamClicked(standing.team)"
+        class="standing-team"
+        *ngFor="let standing of leagueStandings$ | async">
+      <td>
+        {{standing.rank}}
+      </td>
+      <td>
+        <img [src]="standing.team.logo" [alt]="standing.team.name + ' Logo'" width="50" height="50">
+      </td>
+      <td>
+        {{standing.team.name}}
+      </td>
+      <td>
+        {{standing.all.played}}
+      </td>
+      <td>
+        {{standing.all.win}}
+      </td>
+      <td>
+        {{standing.all.lose}}
+      </td>
+      <td>
+        {{standing.all.draw}}
+      </td>
+      <td>
+        {{standing.goalsDiff}}
+      </td>
+      <td>
+        {{standing.points}}
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

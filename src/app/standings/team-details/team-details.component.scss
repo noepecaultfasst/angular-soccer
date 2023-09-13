@@ -2,3 +2,16 @@ img {
   height: 3rem !important;
   aspect-ratio: 1 !important;
 }
+
+#back-button {
+  margin-top: 0.8rem;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #abacb0;
+  }
+}
+
+#team-fixtures {
+  width: 60rem;
+}

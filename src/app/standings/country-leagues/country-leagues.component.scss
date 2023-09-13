@@ -1,3 +1,33 @@
 .country-selected {
-  background-color: red;
+  font-style: normal;
+  font-weight: bolder;
+}
+
+.country-selector {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+
+  width: 20rem;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.country-selector > *:hover {
+  cursor: pointer;
+}
+
+#standings-table {
+  width: 60rem;
+}
+
+.standing-team {
+  border-radius: 2rem;
+}
+
+.standing-team:hover {
+  text-shadow: #d0d0d0 1pt 1pt 0.4rem;
+  font-weight: bolder;
+  cursor: pointer;
 }
