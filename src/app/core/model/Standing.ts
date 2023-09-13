@@ -9,6 +9,6 @@ export interface Standing {
     played: number
     win: number
     draw: number
-    lose: 0
+    lose: number
   }
 }

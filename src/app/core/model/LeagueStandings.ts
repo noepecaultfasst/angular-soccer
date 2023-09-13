@@ -1,7 +1,10 @@
 import {Standing} from "./Standing";
 import {League} from "./League";
 
-export type LeagueStandings = {
+export interface LeagueStandings {
+  id: number
+  name: string
+  logo: string
   season: number
   standings: Standing[]
-} & League
+}

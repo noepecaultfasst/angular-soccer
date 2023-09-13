@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {CountryLeaguesComponent} from './country-leagues/country-leagues.component';
 
 
@@ -8,7 +8,8 @@ import {CountryLeaguesComponent} from './country-leagues/country-leagues.compone
     CountryLeaguesComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    NgOptimizedImage
   ]
 })
 export class StandingsModule {
