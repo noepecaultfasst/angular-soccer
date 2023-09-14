@@ -15,12 +15,12 @@ export class TeamDetailsComponent {
       .sort((f1, f2) => f2.fixture.timestamp - f1.fixture.timestamp)
       .slice(0, environment.lastMatchCount)
     )
-  )
+  );
 
-  private readonly originCountry: string | null = null
+  private readonly originCountry: string | null = null;
 
   constructor(private route: ActivatedRoute, private router: Router) {
-    let routerState = router.getCurrentNavigation()?.extras.state
+    let routerState = router.getCurrentNavigation()?.extras.state;
     if (routerState && routerState["country"]) {
       this.originCountry = routerState["country"];
     }
@@ -31,6 +31,6 @@ export class TeamDetailsComponent {
       state: {
         country: this.originCountry
       }
-    })
+    });
   }
 }
