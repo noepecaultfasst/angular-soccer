@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {Fixture} from "../../core/model/fixture.model";
 import {ActivatedRoute, Router} from "@angular/router";
-import {map, Observable, tap} from "rxjs";
+import {map, Observable} from "rxjs";
 
 const MATCH_COUNT: number = 10;
 

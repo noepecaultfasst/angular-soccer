@@ -1,10 +1,14 @@
 type Environment = {
+  baseUrl: string,
+  apiKey: string,
   season: number | "current"
   shownCountries: string[]
   countriesTopLeagues: Map<string, number>
 }
 
 export const environment: Environment = {
+  baseUrl: "https://v3.football.api-sports.io",
+  apiKey: "ea09f878d82ed46986e5b2b480010afd",
   season: "current",
   // Stub data for the exam but could be replaced by an Observable containing user preferences.
   shownCountries: [

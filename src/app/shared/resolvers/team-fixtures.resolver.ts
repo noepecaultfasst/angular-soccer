@@ -13,7 +13,7 @@ export const teamFixturesResolver: ResolveFn<Fixture[]> = (
   let teamIdStr: string | null = route.paramMap.get("id");
   let leagueIdStr: string | null = route.queryParamMap.get("league");
 
-  if (leagueIdStr === null || teamIdStr === null || !/\d+/.test(teamIdStr) || !/\d+/.test(leagueIdStr)) {
+  if (!leagueIdStr || !teamIdStr || !/\d+/.test(teamIdStr) || !/\d+/.test(leagueIdStr)) {
     router.navigateByUrl("/not-found");
     return EMPTY;
   }
@@ -29,7 +29,7 @@ export const teamFixturesResolver: ResolveFn<Fixture[]> = (
   }
 
   return soccerService.getTeamFixtures(leagueId, teamId).pipe(
-    catchError(err => {
+    catchError(_ => {
       console.log(`An error occurred when fetching team details from API.`)
       return EMPTY;
     })
